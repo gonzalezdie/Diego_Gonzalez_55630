@@ -1,0 +1,27 @@
+{% extends 'aplicacion/base_nueva.html' %}
+{% load static %}
+
+{% block titulo %}
+<br>
+    <h2>Editar Perfil</h2>
+</br>
+{% endblock titulo %}
+
+{% block contenido %}
+   
+<form action="" method="post" style="display: inline-block; margin-right: -190px;">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <br>
+        <input type="submit" value="Actualizar Perfil" class="btn btn-dark">
+    </br>
+</form>
+<a href="{% url 'agregar_avatar' %}" class="btn btn-dark">Cambiar Avatar</a>
+
+{% endblock contenido %}
+
+
+ 
+

@@ -1,0 +1,17 @@
+{% extends  'aplicacion/base_nueva.html' %}  
+ {% load static %}                   
+
+
+ {% block contenido %}
+ <a>
+     <img class="card-img-top" src="{% static 'aplicacion/images/inmobiliaria.jpg' %}" alt="..." style="width: 100%; height: 550px; background-size: cover;">
+     <div class="texto-superpuesto" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.5); color: white; padding: 20px;">
+      <h1>¡Bienvenido!</h1>
+  </div>
+   </a>
+{% endblock contenido %}
+
+
+ {% block footer %}
+
+ {% endblock footer %}

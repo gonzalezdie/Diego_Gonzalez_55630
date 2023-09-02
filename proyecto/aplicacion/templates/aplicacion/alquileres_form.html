@@ -1,0 +1,36 @@
+{% extends 'aplicacion/base_nueva.html' %} 
+
+{% load static %} 
+
+{% block titulo %}
+{% endblock titulo %}
+
+
+{% block contenido %}
+    <h2 class= "text-center">Esta Agregando:</h2>
+    <form action="" method="POST">
+        {% csrf_token %} 
+        <div class="container text-center">
+            <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card mb-4">    
+                <a href="#!"><img class="card-img-top" src="{% static 'aplicacion/images/alquiler.jpg' %}" alt="..." /></a>
+                
+                    <table>
+                        {{ form.as_table }}
+                    </table>
+                    <br>
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary btn-block" value="Confirmar">
+                    </div>   
+                    </br>
+                </div>   
+            </div>   
+        </div>          
+     
+    </form>
+{% endblock contenido %}
+
+{% block footer %}   
+
+{% endblock footer %}   

@@ -1,0 +1,85 @@
+{% extends 'aplicacion/base_nueva.html' %}
+{% load static %}
+
+
+{% block titulo %}
+<div class="text-center">
+    {% if not query %}
+        <h2>{{ mensaje }}</h2>
+    {% else %}
+        <h2>Resultados de la búsqueda para "{{ query }}"
+    {% endif %}
+</div>    
+{% endblock titulo %}
+
+
+
+{% block contenido %}
+<br>
+    <div class="text-center">
+        <h3>Resultados para Alquileres:</h3>
+    </div>
+</br>
+<br>
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            {% for alquiler in alquileres_results %}
+            <div class="col-lg-5">
+                <a href="#!"><img class="card-img-top" src="{% static 'aplicacion/images/alquiler.jpg' %}" alt="..." /></a>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="small text-muted">{{ alquiler.localidad }}</div>
+                        <h2 class="card-title">{{ alquiler.tipo }}</h2>
+                        <p class="card-text">Excelente estado! Cuenta con {{ alquiler.ambientes }} ambientes. </p>
+                        <p class="card-text">$ {{ alquiler.precio }}</p> 
+                    </a>
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:"2" %}
+            </div><div class="row justify-content-center">
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</br>  
+<br>
+    <br>
+        <div class="text-center">
+            <h3>Resultados para Ventas:</h3>
+        </div>
+    </br> 
+</br> 
+<br>
+    <br>
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                {% for venta in ventas_results  %}
+                <div class="col-lg-5">
+                    <a href="#!"><img class="card-img-top" src="{% static 'aplicacion/images/inmobiliaria2.jpg' %}" alt="..." /></a>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="small text-muted">{{ venta.localidad }}</div>
+                            <h2 class="card-title">{{ venta.tipo }}</h2>
+                            <p class="card-text">Excelente estado! Cuenta con {{ venta.ambientes }} ambientes. </p>
+                            <p class="card-text">$USD {{ venta.precio }}</p> 
+                            {% if user.is_authenticated %} 
+                            <a class="btn btn-primary btn-dark" href="{% url 'update_venta' venta.id %}">Editar→</a>
+                            <i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                            <a class="btn btn-danger"  href="{% url 'delete_venta' venta.id %}">Eliminar X </a>
+                            <i class="fa fa-trash fa-sm" title="Edit Record"></i>
+                            {% endif %} 
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:"2" %}
+                </div><div class="row justify-content-center">
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </br>
+</br>    
+{% endblock contenido %}
+

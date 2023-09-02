@@ -1,0 +1,54 @@
+ {% extends  'aplicacion/base_nueva.html' %}  
+{% load static %}           
+
+
+{% block titulo %}
+<br>
+   <div class="text-center">
+      <h2> ¡Oportunidades unicas! </h2>
+   </div>     
+</br>
+{% endblock titulo %}
+ {% block contenido %}
+
+<br>
+   {% if user.is_authenticated %}
+      <div style="display: flex; align-items: center;">
+         <h4 style="margin-right: 10px;">Agregar item de Inversion</h4>
+         <a href="{% url 'create_inversiones' %}" class="btn btn-primary btn-sm" style="padding: 5px;">
+            <i class="bi bi-plus" title="New Record" style="font-size: 20px;"></i>
+         </a>
+      </div>
+   {% endif%}   
+</br>
+
+
+<div class="container text-center">
+   <div class="row justify-content-center">
+       {% for inversion in inversiones %}
+       <div class="col-lg-5">
+         {% csrf_token %}
+           <a href="#!"><img class="card-img-top" src="{% static 'aplicacion/images/inversion.jpg' %}" alt="..." /></a>
+           <div class="card mb-4">
+               <div class="card-body">
+                   <div class="small text-muted">{{ inversion.localidad }}</div>
+                   <h2 class="card-title">{{ inversion.etapa }}</h2>
+                   <p class="card-text">Excelente oportunidad de inversion. Departamento de {{ inversion.ambientes }} ambientes.</p> 
+                   <p class="card-text">$USD {{ inversion.precio }}</p>
+                   {% if user.is_authenticated %}
+                   <a class=" btn btn-primary btn-dark " href="{% url 'update_inversiones' inversion.id %}">Editar→</a>
+                   <i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                   <a class="btn btn-danger"  href="{% url 'delete_inversiones' inversion.id %}">Eliminar X </a>
+                   <i class="fa fa-trash fa-sm" title="Edit Record"></i>
+                  {%endif%}
+                  </a>
+               </div>
+           </div>
+       </div>
+       {% if forloop.counter|divisibleby:"2" %}
+       </div><div class="row justify-content-center">
+       {% endif %}
+       {% endfor %}
+   </div>
+</div>
+{% endblock contenido %}
